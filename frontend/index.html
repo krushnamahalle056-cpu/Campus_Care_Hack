@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusCare | Smart Campus Management</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+
+        <a href="#" class="logo">
+            <span class="logo-icon">C</span>
+            <span>CampusCare</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#categories">Categories</a>
+        </nav>
+
+        <div class="nav-actions">
+            <button class="btn btn-outline" id="loginBtn">
+                Login
+            </button>
+
+            <button class="btn btn-primary" id="registerBtn">
+                Get Started
+            </button>
+        </div>
+
+    </header>
+
+
+    <!-- Hero Section -->
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="eyebrow">
+                    SMART CAMPUS MANAGEMENT
+                </span>
+
+                <h1>
+                    A Better Campus<br>
+                    Starts With <span>You.</span>
+                </h1>
+
+                <p>
+                    Report campus issues, track your complaints,
+                    and help create a better learning environment.
+                    Everything your campus needs, in one place.
+                </p>
+
+                <div class="hero-actions">
+
+                    <button
+                        class="btn btn-primary btn-large"
+                        id="complaintBtn"
+                    >
+                        Submit a Complaint →
+                    </button>
+
+                    <button
+                        class="btn btn-outline btn-large"
+                        id="trackBtn"
+                    >
+                        Track Complaint
+                    </button>
+
+                </div>
+
+                <div class="trust-info">
+                    <span class="status-dot"></span>
+                    <span>One platform. Better campus.</span>
+                </div>
+
+            </div>
+
+
+            <!-- Dashboard Preview -->
+            <div class="dashboard-preview">
+
+                <div class="preview-header">
+                    <div>
+                        <span class="small-label">OVERVIEW</span>
+                        <h3>Campus Dashboard</h3>
+                    </div>
+
+                    <span class="live-badge">● LIVE PREVIEW</span>
+                </div>
+
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <span class="stat-icon blue">▤</span>
+                        <p>Total Complaints</p>
+                        <h2 id="totalComplaints">0</h2>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="stat-icon orange">◷</span>
+                        <p>Pending</p>
+                        <h2 id="pendingComplaints">0</h2>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="stat-icon green">✓</span>
+                        <p>Resolved</p>
+                        <h2 id="resolvedComplaints">0</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="preview-message">
+
+                    <div class="message-icon">✓</div>
+
+                    <div>
+                        <strong>Your voice matters</strong>
+                        <p>Every complaint deserves attention.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Features -->
+        <section class="section" id="features">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">WHY CAMPUSCARE?</span>
+
+                <h2>Campus problems, simplified.</h2>
+
+                <p>
+                    A simple and transparent way to connect students
+                    with college administration.
+                </p>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+                <article class="feature-card">
+
+                    <div class="feature-icon blue">✎</div>
+
+                    <h3>Easy Reporting</h3>
+
+                    <p>
+                        Submit campus complaints through a simple
+                        and user-friendly form.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon purple">◷</div>
+
+                    <h3>Live Status Tracking</h3>
+
+                    <p>
+                        Check whether your complaint is pending,
+                        in progress, or resolved.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon green">▦</div>
+
+                    <h3>Smart Management</h3>
+
+                    <p>
+                        Help administrators organize complaints
+                        by department and priority.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- Categories -->
+        <section class="section categories-section" id="categories">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">CAMPUS SUPPORT</span>
+
+                <h2>What needs attention?</h2>
+
+                <p>
+                    Choose the relevant category when submitting
+                    a campus complaint.
+                </p>
+
+            </div>
+
+
+            <div class="category-grid">
+
+                <div class="category-card">
+                    <span>✦</span>
+                    <h3>Cleanliness</h3>
+                    <p>Campus hygiene and sanitation</p>
+                </div>
+
+                <div class="category-card">
+                    <span>ϟ</span>
+                    <h3>Electricity</h3>
+                    <p>Fans, lights, and power issues</p>
+                </div>
+
+                <div class="category-card">
+                    <span>⌂</span>
+                    <h3>Infrastructure</h3>
+                    <p>Classrooms and campus facilities</p>
+                </div>
+
+                <div class="category-card">
+                    <span>⌁</span>
+                    <h3>Wi-Fi & Network</h3>
+                    <p>Internet and connectivity issues</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+
+            <div>
+                <h2>Let's improve our campus together.</h2>
+
+                <p>
+                    Report an issue and help make a difference.
+                </p>
+            </div>
+
+            <button
+                class="btn btn-light btn-large"
+                id="ctaComplaintBtn"
+            >
+                Report an Issue →
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <a href="#" class="logo">
+            <span class="logo-icon">C</span>
+            <span>CampusCare</span>
+        </a>
+
+        <p>Building a better campus, one complaint at a time.</p>
+
+        <span>© 2026 CampusCare</span>
+
+    </footer>
+
+
+    <script src="./js/app.js"></script>
+
+</body>
+</html>

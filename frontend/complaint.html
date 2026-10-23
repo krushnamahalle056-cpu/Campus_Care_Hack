@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Complaint | CampusCare</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <a href="index.html" class="logo">
+            <span class="logo-icon">C</span>
+            <span>CampusCare</span>
+        </a>
+        <a href="dashboard.html" class="btn btn-outline">My Dashboard</a>
+    </header>
+
+    <main class="section">
+        <div class="section-heading">
+            <span class="eyebrow">CAMPUS SUPPORT</span>
+            <h2>Submit a Complaint</h2>
+            <p>Tell us about the issue. We'll help you track it.</p>
+        </div>
+
+        <form id="complaintForm" class="complaint-form">
+            <label for="title">Complaint Title</label>
+            <input id="title" name="title" required
+                   placeholder="e.g. Wi-Fi not working">
+
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+                <option value="">Select category</option>
+                <option>Cleanliness</option>
+                <option>Electricity</option>
+                <option>Infrastructure</option>
+                <option>Wi-Fi & Network</option>
+                <option>Laboratory</option>
+                <option>Other</option>
+            </select>
+
+            <label for="department">Department</label>
+            <select id="department" name="department" required>
+                <option value="">Select department</option>
+                <option>Hygiene Department</option>
+                <option>Electrical Department</option>
+                <option>IT Department</option>
+                <option>Infrastructure Department</option>
+                <option>TPO</option>
+                <option>Other</option>
+            </select>
+
+            <label for="location">Location</label>
+            <input id="location" name="location" required
+                   placeholder="e.g. Computer Lab 2">
+
+            <label for="description">Describe the issue</label>
+            <textarea id="description" name="description"
+                      rows="5" required minlength="10"
+                      placeholder="Explain the problem..."></textarea>
+
+            <button type="submit" class="btn btn-primary btn-large">
+                Submit Complaint
+            </button>
+
+            <p id="formMessage" role="status"></p>
+        </form>
+    </main>
+
+    <script src="./js/app.js"></script>
+</body>
+</html>

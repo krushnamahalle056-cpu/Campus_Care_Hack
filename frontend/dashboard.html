@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard | CampusCare</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <a href="index.html" class="logo">
+            <span class="logo-icon">C</span>
+            <span>CampusCare</span>
+        </a>
+        <a href="complaint.html" class="btn btn-primary">+ New Complaint</a>
+    </header>
+
+    <main class="section">
+        <span class="eyebrow">STUDENT PORTAL</span>
+        <h1 class="dashboard-title">My Complaints</h1>
+        <p class="dashboard-subtitle">
+            Track the progress of your campus complaints.
+        </p>
+
+        <div class="stats-grid dashboard-stats">
+            <div class="stat-card">
+                <p>Total Complaints</p>
+                <h2 id="totalCount">0</h2>
+            </div>
+            <div class="stat-card">
+                <p>Pending</p>
+                <h2 id="pendingCount">0</h2>
+            </div>
+            <div class="stat-card">
+                <p>Resolved</p>
+                <h2 id="resolvedCount">0</h2>
+            </div>
+        </div>
+
+        <div id="complaintList" class="complaint-list"></div>
+    </main>
+
+    <script src="./js/app.js"></script>
+</body>
+</html>
