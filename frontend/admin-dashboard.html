@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | CampusCare</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/api.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <a href="index.html" class="logo">✦ CampusCare</a>
+
+      <p class="sidebar-label">ADMINISTRATION</p>
+      <a href="admin-dashboard.html" class="active">▦ &nbsp; Overview</a>
+      <a href="#all-complaints">▤ &nbsp; All Complaints</a>
+      <a href="index.html">⌂ &nbsp; Home</a>
+
+      <div class="sidebar-bottom">
+        <div class="admin-identity">
+          <div class="admin-avatar">A</div>
+          <div>
+            <strong>Administrator</strong>
+            <small>Management Portal</small>
+          </div>
+        </div>
+        <button id="adminLogout" type="button">↪ &nbsp; Sign Out</button>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-header">
+        <div>
+          <span class="eyebrow">CAMPUS MANAGEMENT</span>
+          <h1>Admin Overview</h1>
+          <p>Monitor complaints and keep campus issues moving forward.</p>
+        </div>
+        <span class="admin-status"><span></span> Admin Portal</span>
+      </header>
+
+      <section class="welcome-banner admin-banner">
+        <div>
+          <p class="welcome-kicker">MANAGEMENT CENTRE</p>
+          <h2>Every issue deserves attention.</h2>
+          <p>Review submissions, update complaint statuses, and monitor resolution progress.</p>
+        </div>
+        <div class="welcome-art" aria-hidden="true">🛡️</div>
+      </section>
+
+      <section class="stats-grid dashboard-stats">
+        <article class="stat-card">
+          <div class="stat-top"><span>Total Complaints</span><span class="stat-icon blue">▤</span></div>
+          <h2 id="adminTotal">—</h2>
+          <p>All student submissions</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>Pending</span><span class="stat-icon orange">◷</span></div>
+          <h2 id="adminPending">—</h2>
+          <p>Need attention</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>In Progress</span><span class="stat-icon purple">↻</span></div>
+          <h2 id="adminProgress">—</h2>
+          <p>Being addressed</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>Resolved</span><span class="stat-icon green">✓</span></div>
+          <h2 id="adminResolved">—</h2>
+          <p>Marked complete</p>
+        </article>
+      </section>
+
+      <section class="card complaint-section" id="all-complaints">
+        <div class="section-toolbar">
+          <div>
+            <h2>All Student Complaints</h2>
+            <p>Review complaint details and update their status below.</p>
+          </div>
+          <span class="admin-status"><span></span> Management active</span>
+        </div>
+
+        <div id="adminComplaintList" class="complaint-list">
+          <div class="empty-state">
+            <div class="empty-icon">▤</div>
+            <h3>Loading complaints...</h3>
+            <p>Complaint records will appear here.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="dashboard-footer">
+        <span>✦ CampusCare Administration</span>
+        <span>Manage responsibly. Resolve efficiently.</span>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

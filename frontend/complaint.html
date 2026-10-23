@@ -2,71 +2,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit Complaint | CampusCare</title>
-    <link rel="stylesheet" href="./css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Complaint | CampusCare</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/api.js" defer></script>
+  <script src="js/app.js" defer></script>
 </head>
 <body>
-    <header class="navbar">
-        <a href="index.html" class="logo">
-            <span class="logo-icon">C</span>
-            <span>CampusCare</span>
-        </a>
-        <a href="dashboard.html" class="btn btn-outline">My Dashboard</a>
-    </header>
+  <header class="navbar">
+    <a class="logo" href="index.html">✦ CampusCare</a>
+    <nav class="nav-links">
+      <a href="dashboard.html">My Dashboard</a>
+      <a href="complaint.html">New Complaint</a>
+      <a href="index.html">Home</a>
+    </nav>
+  </header>
 
-    <main class="section">
-        <div class="section-heading">
-            <span class="eyebrow">CAMPUS SUPPORT</span>
-            <h2>Submit a Complaint</h2>
-            <p>Tell us about the issue. We'll help you track it.</p>
+  <main class="complaint-page">
+    <section class="complaint-heading">
+      <a class="back-link" href="dashboard.html">← Back to Dashboard</a>
+      <span class="eyebrow">STUDENT SUPPORT CENTRE</span>
+      <h1>Let's fix it <span>together.</span></h1>
+      <p>Tell us what's wrong on campus. Your report helps make college life better for everyone.</p>
+    </section>
+
+    <div class="complaint-layout">
+      <section class="complaint-form-panel">
+        <div class="form-panel-heading">
+          <div class="form-panel-icon">📝</div>
+          <div>
+            <h2>Submit a complaint</h2>
+            <p>Fill in the details below to report your issue.</p>
+          </div>
         </div>
 
-        <form id="complaintForm" class="complaint-form">
-            <label for="title">Complaint Title</label>
-            <input id="title" name="title" required
-                   placeholder="e.g. Wi-Fi not working">
+        <div class="form-divider"></div>
 
-            <label for="category">Category</label>
-            <select id="category" name="category" required>
+        <form id="complaintForm">
+          <div class="form-group">
+            <label for="complaintTitle">Complaint title <span>*</span></label>
+            <input
+              id="complaintTitle"
+              name="title"
+              type="text"
+              placeholder="e.g. Projector not working in Room 204"
+              minlength="3"
+              maxlength="120"
+              required
+            >
+            <small>A short, clear title helps identify the issue.</small>
+          </div>
+
+          <div class="complaint-form-grid">
+            <div class="form-group">
+              <label for="complaintCategory">Category <span>*</span></label>
+              <select id="complaintCategory" name="category" required>
                 <option value="">Select category</option>
-                <option>Cleanliness</option>
-                <option>Electricity</option>
-                <option>Infrastructure</option>
-                <option>Wi-Fi & Network</option>
-                <option>Laboratory</option>
-                <option>Other</option>
-            </select>
+                <option value="Electricity">⚡ Electricity</option>
+                <option value="Water">💧 Water</option>
+                <option value="Cleanliness">🧹 Cleanliness</option>
+                <option value="Classroom">🏫 Classroom</option>
+                <option value="Laboratory">🔬 Laboratory</option>
+                <option value="Internet">📶 Internet</option>
+                <option value="Hostel">🛏️ Hostel</option>
+                <option value="Other">📌 Other</option>
+              </select>
+            </div>
 
-            <label for="department">Department</label>
-            <select id="department" name="department" required>
+            <div class="form-group">
+              <label for="complaintDepartment">Department <span>*</span></label>
+              <select id="complaintDepartment" name="department" required>
                 <option value="">Select department</option>
-                <option>Hygiene Department</option>
-                <option>Electrical Department</option>
-                <option>IT Department</option>
-                <option>Infrastructure Department</option>
-                <option>TPO</option>
-                <option>Other</option>
+                <option value="Maintenance">Maintenance</option>
+                <option value="Electrical">Electrical</option>
+                <option value="Housekeeping">Housekeeping</option>
+                <option value="IT Support">IT Support</option>
+                <option value="Hostel Administration">Hostel Administration</option>
+                <option value="College Administration">College Administration</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="complaintLocation">Issue location <span>*</span></label>
+            <input
+              id="complaintLocation"
+              name="location"
+              type="text"
+              placeholder="e.g. Main building, 2nd floor, Room 204"
+              maxlength="200"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="complaintDescription">Describe the issue <span>*</span></label>
+            <textarea
+              id="complaintDescription"
+              name="description"
+              placeholder="Explain what happened, when you noticed it, and how it affects students..."
+              minlength="10"
+              maxlength="3000"
+              required
+            ></textarea>
+            <small>Please provide at least 10 characters of detail.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="complaintPriority">Priority level <span>*</span></label>
+            <select id="complaintPriority" name="priority" required>
+              <option value="Low">Low — Routine issue</option>
+              <option value="Medium" selected>Medium — Needs attention</option>
+              <option value="High">High — Urgent campus issue</option>
             </select>
+            <small>Choose priority based on how urgently the issue needs attention.</small>
+          </div>
 
-            <label for="location">Location</label>
-            <input id="location" name="location" required
-                   placeholder="e.g. Computer Lab 2">
+          <div id="complaintMessage" class="message" role="status" hidden></div>
 
-            <label for="description">Describe the issue</label>
-            <textarea id="description" name="description"
-                      rows="5" required minlength="10"
-                      placeholder="Explain the problem..."></textarea>
-
-            <button type="submit" class="btn btn-primary btn-large">
-                Submit Complaint
-            </button>
-
-            <p id="formMessage" role="status"></p>
+          <div class="complaint-form-actions">
+            <a href="dashboard.html" class="cancel-link">Cancel</a>
+            <button type="submit">Submit Complaint <span>→</span></button>
+          </div>
         </form>
-    </main>
+      </section>
 
-    <script src="./js/app.js"></script>
+      <aside class="complaint-help">
+        <div class="help-banner">
+          <span class="help-emoji">💡</span>
+          <h2>Your voice matters.</h2>
+          <p>Every useful report brings your campus one step closer to being a better place.</p>
+        </div>
+
+        <div class="help-card">
+          <h3>How it works</h3>
+          <div class="help-step">
+            <span>1</span>
+            <div>
+              <strong>Submit your report</strong>
+              <p>Describe the issue and its location.</p>
+            </div>
+          </div>
+          <div class="help-step">
+            <span>2</span>
+            <div>
+              <strong>Admin reviews it</strong>
+              <p>Your complaint appears in the management dashboard.</p>
+            </div>
+          </div>
+          <div class="help-step">
+            <span>3</span>
+            <div>
+              <strong>Track the status</strong>
+              <p>Check updates from your student dashboard.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="privacy-note">
+          <span>🔒</span>
+          <p>Your complaint is linked to your account and can be viewed by authorized administrators.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    CampusCare · Together for a better campus.
+  </footer>
 </body>
 </html>
