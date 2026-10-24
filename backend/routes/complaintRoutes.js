@@ -121,4 +121,77 @@ router.patch("/:id/status", authenticate, requireAdmin, async (req, res) => {
   }
 });
 
+
+// Student: submit feedback for their resolved complaint
+router.post("/:id/feedback", authenticate, async (req, res) => {
+  try {
+    if (!mongoose.isValidObjectId(req.params.id)) {
+      return res.status(400).json({ message: "Invalid complaint ID." });
+    }
+
+    const { rating, comment } = req.body;
+
+    if (
+      !Number.isInteger(rating) ||
+      rating < 1 ||
+      rating > 5
+    ) {
+      return res.status(400).json({
+        message: "Please select a rating from 1 to 5 stars.",
+      });
+    }
+
+    if (
+      comment !== undefined &&
+      (typeof comment !== "string" || comment.trim().length > 500)
+    ) {
+      return res.status(400).json({
+        message: "Feedback must be 500 characters or fewer.",
+      });
+    }
+
+    const complaint = await Complaint.findOne({
+      _id: req.params.id,
+      userId: req.user.id,
+    });
+
+    if (!complaint) {
+      return res.status(404).json({
+        message: "Complaint not found.",
+      });
+    }
+
+    if (complaint.status !== "Resolved") {
+      return res.status(400).json({
+        message: "Feedback is available only for resolved complaints.",
+      });
+    }
+
+    if (complaint.feedback?.submittedAt) {
+      return res.status(409).json({
+        message: "Feedback has already been submitted for this complaint.",
+      });
+    }
+
+    complaint.feedback = {
+      rating,
+      comment: (comment || "").trim(),
+      submittedAt: new Date(),
+    };
+
+    await complaint.save();
+
+    return res.status(201).json({
+      message: "Thank you! Your feedback has been submitted.",
+      feedback: complaint.feedback,
+    });
+  } catch (error) {
+    console.error("Feedback submission error:", error.message);
+
+    return res.status(500).json({
+      message: "Could not submit feedback.",
+    });
+  }
+});
+
 export default router;
