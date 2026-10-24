@@ -1199,3 +1199,41 @@ textarea {
     margin: 12px 0;
 }
 
+.feedback-stars button {
+    border: none;
+    background: transparent;
+    color: #cbd5e1;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.feedback-stars button.active,
+.feedback-stars button:hover {
+    color: #f59e0b;
+}
+
+.feedback-section textarea {
+    width: 100%;
+    min-height: 90px;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font: inherit;
+    resize: vertical;
+}
+
+.feedback-result {
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    background: #ecfdf5;
+    color: #166534;
+}
+
+.feedback-rating {
+    color: #f59e0b;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
