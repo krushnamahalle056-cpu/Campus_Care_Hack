@@ -1178,3 +1178,24 @@ textarea {
 .cta-content .btn {
     margin-top: 25px;
 }
+
+/* Feedback Section */
+.feedback-section {
+    margin-top: 20px;
+    padding: 18px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+.feedback-section h4 {
+    margin-bottom: 12px;
+    color: #1e293b;
+}
+
+.feedback-stars {
+    display: flex;
+    gap: 8px;
+    margin: 12px 0;
+}
+
