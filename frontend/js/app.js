@@ -345,7 +345,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
             feedbackSection.appendChild(stars);
 
-            
+            const comment = document.createElement("textarea");
+            comment.placeholder = "Tell us about your experience (optional)";
+            comment.maxLength = 500;
+            comment.setAttribute("aria-label", "Your feedback");
+            feedbackSection.appendChild(comment);
+
+            const submit = makeElement("button", "Submit Feedback");
+            submit.type = "button";
+
+            submit.addEventListener("click", async () => {
+                if (!selectedRating) {
+                    alert("Please select a rating from 1 to 5 stars.");
+                    return;
+                }
+
+                submit.disabled = true;
+
+                try {
+                    const result = await apiRequest(
+                        `/complaints/${complaint._id}/feedback`,
+                        {
+                            method: "POST",
+                            body: JSON.stringify({
+                                rating: selectedRating,
+                                comment: comment.value.trim()
+                            })
+                        }
+                    );
+
+                    alert(result.message);
+                    await loadStudentDashboard();
+                } catch (error) {
+                    alert(error.message);
+                    submit.disabled = false;
+                }
+            });
 
             feedbackSection.appendChild(submit);
          }
