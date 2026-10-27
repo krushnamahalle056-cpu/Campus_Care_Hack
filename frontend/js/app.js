@@ -316,7 +316,20 @@ document.addEventListener("DOMContentLoaded", () => {
             feedbackSection.appendChild(
                 makeElement("p", "Thank you for your feedback!")
             );
-        }
+        } else {
+            feedbackSection.appendChild(
+                makeElement("p", "Your complaint is resolved. Share your experience.")
+            );
+
+            const stars = document.createElement("div");
+            stars.className = "feedback-stars";
+
+            let selectedRating = 0;
+
+            
+         }
+
+        card.appendChild(feedbackSection);
       }
         list.appendChild(card);
       });
