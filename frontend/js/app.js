@@ -326,7 +326,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
             let selectedRating = 0;
 
+            for (let i = 1; i <= 5; i++) {
+                const star = document.createElement("button");
+                star.type = "button";
+                star.textContent = "★";
+                star.setAttribute("aria-label", `${i} star${i > 1 ? "s" : ""}`);
+
+                star.addEventListener("click", () => {
+                    selectedRating = i;
+
+                    [...stars.children].forEach((button, index) => {
+                        button.classList.toggle("active", index < i);
+                    });
+                });
+
+                stars.appendChild(star);
+            }
+
+            feedbackSection.appendChild(stars);
+
             
+
+            feedbackSection.appendChild(submit);
          }
 
         card.appendChild(feedbackSection);
