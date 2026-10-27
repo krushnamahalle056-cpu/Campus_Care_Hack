@@ -299,7 +299,24 @@ document.addEventListener("DOMContentLoaded", () => {
         const heading = makeElement("h4", "⭐ Rate Your Experience");
         feedbackSection.appendChild(heading);
 
+        if (complaint.feedback?.submittedAt) {
+            const rating = makeElement(
+                "p",
+                `Your rating: ${"★".repeat(complaint.feedback.rating)}${"☆".repeat(5 - complaint.feedback.rating)}`,
+                "feedback-rating"
+            );
+            feedbackSection.appendChild(rating);
 
+            if (complaint.feedback.comment) {
+                feedbackSection.appendChild(
+                    makeElement("p", complaint.feedback.comment)
+                );
+            }
+
+            feedbackSection.appendChild(
+                makeElement("p", "Thank you for your feedback!")
+            );
+        }
       }
         list.appendChild(card);
       });
