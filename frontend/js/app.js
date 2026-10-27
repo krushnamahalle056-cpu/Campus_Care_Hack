@@ -290,103 +290,102 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         card.append(statusSelect, updateButton);
-        // FEEDBACK FOR RESOLVED COMPLAINTS
-        // FEEDBACK FOR RESOLVED COMPLAINTS
-    if (complaint.status === "Resolved") {
-        const feedbackSection = document.createElement("div");
-        feedbackSection.className = "feedback-section";
+       // FEEDBACK FOR RESOLVED COMPLAINTS
+if (complaint.status === "Resolved") {
+    const feedbackSection = document.createElement("div");
+    feedbackSection.className = "feedback-section";
 
-        const heading = makeElement("h4", "⭐ Rate Your Experience");
-        feedbackSection.appendChild(heading);
+    const heading = makeElement("h4", "⭐ Rate Your Experience");
+    feedbackSection.appendChild(heading);
 
-        if (complaint.feedback?.submittedAt) {
-            const rating = makeElement(
-                "p",
-                `Your rating: ${"★".repeat(complaint.feedback.rating)}${"☆".repeat(5 - complaint.feedback.rating)}`,
-                "feedback-rating"
-            );
-            feedbackSection.appendChild(rating);
+    if (complaint.feedback?.submittedAt) {
+        const rating = makeElement(
+            "p",
+            `Your rating: ${"★".repeat(complaint.feedback.rating)}${"☆".repeat(5 - complaint.feedback.rating)}`,
+            "feedback-rating"
+        );
+        feedbackSection.appendChild(rating);
 
-            if (complaint.feedback.comment) {
-                feedbackSection.appendChild(
-                    makeElement("p", complaint.feedback.comment)
-                );
-            }
-
+        if (complaint.feedback.comment) {
             feedbackSection.appendChild(
-                makeElement("p", "Thank you for your feedback!")
+                makeElement("p", complaint.feedback.comment)
             );
-        } else {
-            feedbackSection.appendChild(
-                makeElement("p", "Your complaint is resolved. Share your experience.")
-            );
+        }
 
-            const stars = document.createElement("div");
-            stars.className = "feedback-stars";
+        feedbackSection.appendChild(
+            makeElement("p", "Thank you for your feedback!")
+        );
+    } else {
+        feedbackSection.appendChild(
+            makeElement("p", "Your complaint is resolved. Share your experience.")
+        );
 
-            let selectedRating = 0;
+        const stars = document.createElement("div");
+        stars.className = "feedback-stars";
 
-            for (let i = 1; i <= 5; i++) {
-                const star = document.createElement("button");
-                star.type = "button";
-                star.textContent = "★";
-                star.setAttribute("aria-label", `${i} star${i > 1 ? "s" : ""}`);
+        let selectedRating = 0;
 
-                star.addEventListener("click", () => {
-                    selectedRating = i;
+        for (let i = 1; i <= 5; i++) {
+            const star = document.createElement("button");
+            star.type = "button";
+            star.textContent = "★";
+            star.setAttribute("aria-label", `${i} star${i > 1 ? "s" : ""}`);
 
-                    [...stars.children].forEach((button, index) => {
-                        button.classList.toggle("active", index < i);
-                    });
+            star.addEventListener("click", () => {
+                selectedRating = i;
+
+                [...stars.children].forEach((button, index) => {
+                    button.classList.toggle("active", index < i);
                 });
-
-                stars.appendChild(star);
-            }
-
-            feedbackSection.appendChild(stars);
-
-            const comment = document.createElement("textarea");
-            comment.placeholder = "Tell us about your experience (optional)";
-            comment.maxLength = 500;
-            comment.setAttribute("aria-label", "Your feedback");
-            feedbackSection.appendChild(comment);
-
-            const submit = makeElement("button", "Submit Feedback");
-            submit.type = "button";
-
-            submit.addEventListener("click", async () => {
-                if (!selectedRating) {
-                    alert("Please select a rating from 1 to 5 stars.");
-                    return;
-                }
-
-                submit.disabled = true;
-
-                try {
-                    const result = await apiRequest(
-                        `/complaints/${complaint._id}/feedback`,
-                        {
-                            method: "POST",
-                            body: JSON.stringify({
-                                rating: selectedRating,
-                                comment: comment.value.trim()
-                            })
-                        }
-                    );
-
-                    alert(result.message);
-                    await loadStudentDashboard();
-                } catch (error) {
-                    alert(error.message);
-                    submit.disabled = false;
-                }
             });
 
-            feedbackSection.appendChild(submit);
-         }
+            stars.appendChild(star);
+        }
 
-        card.appendChild(feedbackSection);
-      }
+        feedbackSection.appendChild(stars);
+
+        const comment = document.createElement("textarea");
+        comment.placeholder = "Tell us about your experience (optional)";
+        comment.maxLength = 500;
+        comment.setAttribute("aria-label", "Your feedback");
+        feedbackSection.appendChild(comment);
+
+        const submit = makeElement("button", "Submit Feedback");
+        submit.type = "button";
+
+        submit.addEventListener("click", async () => {
+            if (!selectedRating) {
+                alert("Please select a rating from 1 to 5 stars.");
+                return;
+            }
+
+            submit.disabled = true;
+
+            try {
+                const result = await apiRequest(
+                    `/complaints/${complaint._id}/feedback`,
+                    {
+                        method: "POST",
+                        body: JSON.stringify({
+                            rating: selectedRating,
+                            comment: comment.value.trim()
+                        })
+                    }
+                );
+
+                alert(result.message);
+                await loadStudentDashboard();
+            } catch (error) {
+                alert(error.message);
+                submit.disabled = false;
+            }
+        });
+
+        feedbackSection.appendChild(submit);
+    }
+
+    card.appendChild(feedbackSection);
+}
         list.appendChild(card);
       });
     } catch (error) {
