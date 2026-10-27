@@ -290,6 +290,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         card.append(statusSelect, updateButton);
+        // FEEDBACK FOR RESOLVED COMPLAINTS
         list.appendChild(card);
       });
     } catch (error) {
