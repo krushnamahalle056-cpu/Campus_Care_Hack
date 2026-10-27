@@ -291,6 +291,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         card.append(statusSelect, updateButton);
         // FEEDBACK FOR RESOLVED COMPLAINTS
+        // FEEDBACK FOR RESOLVED COMPLAINTS
+    if (complaint.status === "Resolved") {
+        const feedbackSection = document.createElement("div");
+        feedbackSection.className = "feedback-section";
+
+        const heading = makeElement("h4", "⭐ Rate Your Experience");
+        feedbackSection.appendChild(heading);
+
+
+      }
         list.appendChild(card);
       });
     } catch (error) {
